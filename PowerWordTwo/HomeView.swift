@@ -9,8 +9,6 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var data: WordData
-    
-    //@State var selectedWord: Word = WordData().words[randomIndex]
     @State var selectedWord: Word = Word()
     
     @State private var selectedNum: Int = 0
@@ -19,26 +17,10 @@ struct HomeView: View {
     @State private var showingSheet: Bool = false
     @State private var isShowAlert: Bool = false
     
-//    init() {
-//        let randomIndex = Int.random(in: 0..<WordData().words.count)
-//        beforeNum = randomIndex
-//        //let randomText = WordData().words[randomIndex].text
-//        let randomWord = WordData().words[randomIndex]
-//        //_selectedWord = State(initialValue: Word(text: randomText))
-//        _selectedWord = State(initialValue: randomWord)
-//        print("selectedWord")
-//        print(selectedWord.id)
-//    }
-    
     var body: some View {
         ZStack(alignment: .bottom) {
             VStack {
                 Spacer()
-                //ワード表示
-//                if selectedWord.text == "" {
-//                    Text("\(data.words[beforeNum].text)")
-//                        .frame(width: 340.0)
-//                }
                 
                 Text("\(selectedWord.text)")
                     .frame(width: 340.0)

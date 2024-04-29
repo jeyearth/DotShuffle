@@ -34,7 +34,6 @@ final class WordData: ObservableObject {
             .appendingPathComponent("words.data")
     }
     
-    
     func load() {
         do {
             let fileURL = try WordData.getWordsFileURL()
@@ -58,7 +57,6 @@ final class WordData: ObservableObject {
     }
     
 }
-
 
 enum LaunchStatus {
     case FirstLaunch
