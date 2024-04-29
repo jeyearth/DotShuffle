@@ -9,7 +9,9 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var data: WordData
-    @State private var selectedWord: Word = Word()
+    
+    //@State var selectedWord: Word = WordData().words[randomIndex]
+    @State var selectedWord: Word = Word()
     
     @State private var selectedNum: Int = 0
     @State private var beforeNum: Int = 0
@@ -17,19 +19,27 @@ struct HomeView: View {
     @State private var showingSheet: Bool = false
     @State private var isShowAlert: Bool = false
     
-    init() {
-        _beforeNum = State(initialValue: Int.random(in: 0...(WordData().words.count - 1)))
-    }
+//    init() {
+//        let randomIndex = Int.random(in: 0..<WordData().words.count)
+//        beforeNum = randomIndex
+//        //let randomText = WordData().words[randomIndex].text
+//        let randomWord = WordData().words[randomIndex]
+//        //_selectedWord = State(initialValue: Word(text: randomText))
+//        _selectedWord = State(initialValue: randomWord)
+//        print("selectedWord")
+//        print(selectedWord.id)
+//    }
     
     var body: some View {
         ZStack(alignment: .bottom) {
             VStack {
                 Spacer()
                 //ワード表示
-                if selectedWord.text == "" {
-                    Text("\(data.words[beforeNum].text)")
-                        .frame(width: 340.0)
-                }
+//                if selectedWord.text == "" {
+//                    Text("\(data.words[beforeNum].text)")
+//                        .frame(width: 340.0)
+//                }
+                
                 Text("\(selectedWord.text)")
                     .frame(width: 340.0)
                 Spacer()
@@ -75,10 +85,23 @@ struct HomeView: View {
             }
             .padding()
         } // ZStackここまで
+        .onAppear {
+            initializeSelectedWord()
+        }
     } // bodyここまで
+    
+    func initializeSelectedWord() {
+        if data.words.count > 0 {
+            // ランダムな単語と番号を初期化する
+            let randomIndex = Int.random(in: 0..<data.words.count)
+            beforeNum = randomIndex
+            selectedWord = data.words[randomIndex]
+            selectedNum = randomIndex
+        }
+    }
 }
 
 #Preview {
-    HomeView()
+    HomeView( selectedWord: Word())
         .environmentObject(WordData())
 }

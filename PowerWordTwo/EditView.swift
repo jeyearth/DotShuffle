@@ -10,8 +10,6 @@ import SwiftUI
 struct EditView: View {
     @Binding var word: Word
     
-    @State private var inputText: String = ""
-    
     @FocusState var isFocused: Bool
     
     var body: some View {

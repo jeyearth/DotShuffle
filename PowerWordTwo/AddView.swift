@@ -19,7 +19,6 @@ struct AddView: View {
         VStack {
             List {
                 ZStack(alignment: .topLeading) {
-                    
                     TextEditor(text: $inputText)
                         .frame(height: 200)
                         .onChange(of: inputText) {
