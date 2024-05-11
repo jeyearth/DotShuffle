@@ -73,7 +73,8 @@ struct HomeView: View {
     } // bodyここまで
     
     func initializeSelectedWord() {
-        if data.words.count > 0 {
+        if !data.words.isEmpty {
+            data.load()
             // ランダムな単語と番号を初期化する
             let randomIndex = Int.random(in: 0..<data.words.count)
             beforeNum = randomIndex
@@ -84,6 +85,6 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView( selectedWord: Word())
+    HomeView()
         .environmentObject(WordData())
 }
