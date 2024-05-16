@@ -21,6 +21,7 @@ struct ListView: View {
                                 .onDisappear {
                                     // 一覧に戻る時にselectionをnilに変更
                                     selection = nil
+                                    data.save()
                                 }
                         ) {
                             Text(word.text)
@@ -28,6 +29,7 @@ struct ListView: View {
                                     Button(role: .destructive) {
                                         selection = nil
                                         data.remove(word)
+                                        data.save()
                                     } label: {
                                         Label("Delete", systemImage: "trash")
                                     }

@@ -17,9 +17,7 @@ struct ShuffleButton: View {
     
     var body: some View {
         VStack {
-            Button {
-                print("shuffleButton!")
-                
+            Button {                
                 if data.words.count > 1 {
                     while selectedNum == beforeNum {
                         selectedNum = Int.random(in: 0...(data.words.count-1))
