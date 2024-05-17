@@ -36,11 +36,6 @@ struct ContentView: View {
                 data.save()
             }
         }
-        .onChange(of: scenePhase) { _, phase in
-            if phase == .inactive {
-                data.save()
-            }
-        }
         .task {
             data.load()
         }

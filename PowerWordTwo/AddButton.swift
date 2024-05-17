@@ -42,6 +42,8 @@ struct AddButton: View {
                                     data.add(newWord)
                                     showingSheet = false
                                     newWord = Word()
+                                    data.save()
+                                    print("add!")
                                 } label: {
                                     Image(systemName: "plus.app")
                                         .foregroundColor(.blue)

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F43314052BF44971001D9C9A /* ShuffleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43314042BF44971001D9C9A /* ShuffleButton.swift */; };
 		F4437E192BAC62AE00A01BDE /* Modifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4437E182BAC62AE00A01BDE /* Modifier.swift */; };
 		F45BB74E2B761B6900A6AF05 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45BB74D2B761B6900A6AF05 /* EditView.swift */; };
 		F4602AA02B7E0AF3007DC29E /* EditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4602A9F2B7E0AF3007DC29E /* EditButton.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F43314042BF44971001D9C9A /* ShuffleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShuffleButton.swift; sourceTree = "<group>"; };
 		F4437E182BAC62AE00A01BDE /* Modifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifier.swift; sourceTree = "<group>"; };
 		F45BB74D2B761B6900A6AF05 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		F4602A9F2B7E0AF3007DC29E /* EditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButton.swift; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 				F4F6FA962B73B4EF009317B6 /* ContentView.swift */,
 				F4F6FAA22B74DF92009317B6 /* HomeView.swift */,
 				F4F6FAA42B74DFB2009317B6 /* ListView.swift */,
+				F43314042BF44971001D9C9A /* ShuffleButton.swift */,
 				F4F46CAD2B7501FD00BD9989 /* AddView.swift */,
 				F4F46CAF2B75C0D400BD9989 /* AddButton.swift */,
 				F45BB74D2B761B6900A6AF05 /* EditView.swift */,
@@ -169,6 +172,7 @@
 				F4F46CAE2B7501FD00BD9989 /* AddView.swift in Sources */,
 				F4F6FAA52B74DFB2009317B6 /* ListView.swift in Sources */,
 				F4F46CAC2B74E55D00BD9989 /* DataStore.swift in Sources */,
+				F43314052BF44971001D9C9A /* ShuffleButton.swift in Sources */,
 				F4F6FAA32B74DF92009317B6 /* HomeView.swift in Sources */,
 				F4F6FA972B73B4EF009317B6 /* ContentView.swift in Sources */,
 				F4602AA02B7E0AF3007DC29E /* EditButton.swift in Sources */,

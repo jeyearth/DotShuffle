@@ -31,6 +31,7 @@ struct EditButton: View {
                                     if let index = data.words.firstIndex(where: { $0.id == selectedWord.id }) {
                                         // data.wordsの要素を直接変更
                                         data.words[index].text = selectedWord.text
+                                        data.save()
                                     } else {
                                         print("Item not found")
                                     }
