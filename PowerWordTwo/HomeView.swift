@@ -45,12 +45,13 @@ struct HomeView: View {
     } // bodyここまで
     
     func initializeSelectedWord() {
-        if !data.words.isEmpty {
-            data.load()
+        data.load()
+        if data.lists[0].dotlists.count != 0 {
+            print("initialized")
             // ランダムな単語と番号を初期化する
-            let randomIndex = Int.random(in: 0..<data.words.count)
+            let randomIndex = Int.random(in: 0..<data.lists[0].dotlists.count)
             beforeNum = randomIndex
-            selectedWord = data.words[randomIndex]
+            selectedWord = data.lists[0].dotlists[randomIndex]
             selectedNum = randomIndex
         }
     }

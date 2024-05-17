@@ -38,6 +38,7 @@ struct ContentView: View {
         }
         .task {
             data.load()
+            data.wordsToLists()
         }
     }
 }

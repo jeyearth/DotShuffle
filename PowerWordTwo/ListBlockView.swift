@@ -8,11 +8,69 @@
 import SwiftUI
 
 struct ListBlockView: View {
+    @EnvironmentObject var data: WordData
+    @State private var selection: Word?
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+//            List(data.lists) { list in
+//                NavigationLink(
+//                    destination: List(selection: $selection) {
+//                        ForEach(list.dotlists, id: \.self) { word in
+//                            NavigationLink(
+//                                destination: EditView(word: $data.lists[0].dotlists[data.lists[0].dotlists.firstIndex(of: word)!])
+//                                    .onDisappear {
+//                                        selection = nil
+//                                        data.save()
+//                                    }
+//                            ) {
+//                                Text(word.text)
+//                            }
+//                        }
+//                    }
+//                ) {
+//                    Text(list.name)
+//                }
+//                . navigationTitle("List")
+//            }
+            
+            List (selection: $selection) {
+                Section(header: Text("inbox")) {
+                    ForEach(data.lists[0].dotlists, id: \.self) { word in
+                        NavigationLink(
+                            destination: EditView(word: $data.lists[0].dotlists[data.lists[0].dotlists.firstIndex(of: word)!])
+                                .onDisappear {
+                                    // 一覧に戻る時にselectionをnilに変更
+                                    selection = nil
+                                    data.save()
+                                }
+                        ) {
+                            Text(word.text)
+                                .swipeActions {
+                                    Button(role: .destructive) {
+                                        selection = nil
+                                        data.remove(word)
+                                        data.save()
+                                    } label: {
+                                        Label("Delete", systemImage: "trash")
+                                    }
+                                }
+                        } // NavigationLinkここまで
+                    } // ForEachここまで
+                    .onMove(perform: rowReplace)
+                } // Sectionここまで
+            } // Listここまで
+            .navigationTitle("List")
+        } // VStackここまで
+    } // body ここまで
+    
+    private func rowReplace(_ from: IndexSet, _ to: Int) {
+        data.lists[0].dotlists.move(fromOffsets: from, toOffset: to)
+        data.save()
     }
 }
 
 #Preview {
     ListBlockView()
+        .environmentObject(WordData())
 }

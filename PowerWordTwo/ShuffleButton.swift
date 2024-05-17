@@ -17,37 +17,63 @@ struct ShuffleButton: View {
     
     var body: some View {
         VStack {
-            Button {                
+            Button {
+//                print(data.lists[0].dotlists[1].text)
+//                data.addList(
+//                    DotList(name: "two", dotlists:
+//                        [
+//                            Word(text: "Connecting the Dots"),
+//                            Word(text: "Stay hungry, Stay foolish"),
+//                            Word(text: "If today were the last day of my life, would I want to do what I am about to do today?"),
+//                        ]
+//                    )
+//                )
+                
+                wordShuffle()
+                
                 if data.words.count > 1 {
                     while selectedNum == beforeNum {
                         selectedNum = Int.random(in: 0...(data.words.count-1))
                     }
                     beforeNum = selectedNum
                     selectedWord = data.words[selectedNum]
+                    doShuffle()
                 } else {
                     isShowAlert.toggle()
                 }
-                
             } label: {
                 Image(systemName: "shuffle")
                     .padding(.leading, 10)
                     .padding(.trailing, 10)
             }
-            .alert("Error", isPresented: $isShowAlert) {
-            } message: {
-                // アラートのメッセージ...
-                if data.words.count == 1 {
-                    Text("ワードがひとつです。")
-                } else if data.words.count == 0 {
-                    Text("ワードがありません。")
-                }
-            }
+//            .alert("Error", isPresented: $isShowAlert) {
+//            } message: {
+//                // アラートのメッセージ...
+//                if data.words.count == 1 {
+//                    Text("ワードがひとつです。")
+//                } else if data.words.count == 0 {
+//                    Text("ワードがありません。")
+//                }
+//            }
             .padding()
             .foregroundColor(Color.white)
             .background(Color.blue)
             .clipShape(RoundedRectangle(cornerRadius: 20))
             .shadow(radius: 7)
             .font(.title)
+        }
+    }
+    
+    func wordShuffle() {
+        if data.lists[0].dotlists.count > 1 {
+            while selectedNum == beforeNum {
+                selectedNum = Int.random(in: 0...(data.lists[0].dotlists.count-1))
+            }
+            beforeNum = selectedNum
+            selectedWord = data.lists[0].dotlists[selectedNum]
+            doShuffle()
+        } else {
+            isShowAlert.toggle()
         }
     }
 }

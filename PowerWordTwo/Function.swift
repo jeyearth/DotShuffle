@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+func doShuffle() {
+    print("did shuffle!")
+}
