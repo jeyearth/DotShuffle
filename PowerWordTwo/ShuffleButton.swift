@@ -30,31 +30,20 @@ struct ShuffleButton: View {
 //                )
                 
                 wordShuffle()
-                
-                if data.words.count > 1 {
-                    while selectedNum == beforeNum {
-                        selectedNum = Int.random(in: 0...(data.words.count-1))
-                    }
-                    beforeNum = selectedNum
-                    selectedWord = data.words[selectedNum]
-                    doShuffle()
-                } else {
-                    isShowAlert.toggle()
-                }
             } label: {
                 Image(systemName: "shuffle")
                     .padding(.leading, 10)
                     .padding(.trailing, 10)
             }
-//            .alert("Error", isPresented: $isShowAlert) {
-//            } message: {
-//                // アラートのメッセージ...
-//                if data.words.count == 1 {
-//                    Text("ワードがひとつです。")
-//                } else if data.words.count == 0 {
-//                    Text("ワードがありません。")
-//                }
-//            }
+            .alert("Error", isPresented: $isShowAlert) {
+            } message: {
+                // アラートのメッセージ...
+                if data.lists[0].dotlists.count == 1 {
+                    Text("ワードがひとつです。")
+                } else if data.lists[0].dotlists.count == 0 {
+                    Text("ワードがありません。")
+                }
+            }
             .padding()
             .foregroundColor(Color.white)
             .background(Color.blue)
