@@ -21,7 +21,6 @@ struct HomeView: View {
         ZStack(alignment: .bottom) {
             VStack {
                 Spacer()
-                
                 Text("\(selectedWord.text)")
                     .frame(width: 340.0)
                 Spacer()
@@ -47,7 +46,6 @@ struct HomeView: View {
     func initializeSelectedWord() {
         data.load()
         if data.lists[0].dotlists.count != 0 {
-            print("initialized")
             // ランダムな単語と番号を初期化する
             let randomIndex = Int.random(in: 0..<data.lists[0].dotlists.count)
             beforeNum = randomIndex
