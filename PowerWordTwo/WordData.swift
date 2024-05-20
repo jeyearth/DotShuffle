@@ -15,10 +15,12 @@ struct Word: Identifiable, Hashable, Codable {
 struct DotList: Identifiable, Hashable, Codable {
     var id = UUID()
     var name: String = ""
+    var isshow: Bool = false
     var dotlists:[Word] = []
     
-    init(name: String, dotlists: [Word]) {
+    init(name: String, isshow: Bool, dotlists: [Word]) {
         self.name = name
+        self.isshow = isshow
         self.dotlists = dotlists
     }
 }
@@ -31,7 +33,7 @@ final class WordData: ObservableObject {
     ]
     
     @Published var lists: [DotList] = [
-        DotList(name: "Inbox", dotlists:
+        DotList(name: "Inbox", isshow: true, dotlists:
                     [
                         Word(text: "Connecting the Dots"),
                         Word(text: "Stay hungry, Stay foolish"),

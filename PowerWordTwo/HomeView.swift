@@ -20,7 +20,7 @@ struct HomeView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             VStack {
-                ModeSetting()
+                ModeSettingButton()
                 Spacer()
                 Text("\(selectedWord.text)")
                     .frame(width: 340.0)

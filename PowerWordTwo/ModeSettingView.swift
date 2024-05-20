@@ -8,11 +8,25 @@
 import SwiftUI
 
 struct ModeSettingView: View {
+    @EnvironmentObject var data: WordData
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            List {
+                ForEach(data.lists) { list in
+                    if let index = data.lists.firstIndex(where: {$0.id == list.id}) {
+                        Toggle(isOn: $data.lists[index].isshow, label: {
+                            Text(list.name)
+                        })
+                    }
+                } // ForEachここまで
+            } // Listここまで
+            .navigationTitle("表示するリストを選択")
+        } // VStackここまで
     }
 }
 
 #Preview {
     ModeSettingView()
+        .environmentObject(WordData())
 }
