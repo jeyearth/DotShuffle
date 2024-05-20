@@ -17,17 +17,19 @@ struct ShuffleButton: View {
     
     var body: some View {
         VStack {
-            Button {                
-                if data.words.count > 1 {
-                    while selectedNum == beforeNum {
-                        selectedNum = Int.random(in: 0...(data.words.count-1))
-                    }
-                    beforeNum = selectedNum
-                    selectedWord = data.words[selectedNum]
-                } else {
-                    isShowAlert.toggle()
-                }
+            Button {
+//                print(data.lists[0].dotlists[1].text)
+//                data.addList(
+//                    DotList(name: "two", dotlists:
+//                        [
+//                            Word(text: "Connecting the Dots"),
+//                            Word(text: "Stay hungry, Stay foolish"),
+//                            Word(text: "If today were the last day of my life, would I want to do what I am about to do today?"),
+//                        ]
+//                    )
+//                )
                 
+                wordShuffle()
             } label: {
                 Image(systemName: "shuffle")
                     .padding(.leading, 10)
@@ -36,9 +38,9 @@ struct ShuffleButton: View {
             .alert("Error", isPresented: $isShowAlert) {
             } message: {
                 // アラートのメッセージ...
-                if data.words.count == 1 {
+                if data.lists[0].dotlists.count == 1 {
                     Text("ワードがひとつです。")
-                } else if data.words.count == 0 {
+                } else if data.lists[0].dotlists.count == 0 {
                     Text("ワードがありません。")
                 }
             }
@@ -48,6 +50,19 @@ struct ShuffleButton: View {
             .clipShape(RoundedRectangle(cornerRadius: 20))
             .shadow(radius: 7)
             .font(.title)
+        }
+    }
+    
+    func wordShuffle() {
+        if data.lists[0].dotlists.count > 1 {
+            while selectedNum == beforeNum {
+                selectedNum = Int.random(in: 0...(data.lists[0].dotlists.count-1))
+            }
+            beforeNum = selectedNum
+            selectedWord = data.lists[0].dotlists[selectedNum]
+            doShuffle()
+        } else {
+            isShowAlert.toggle()
         }
     }
 }
