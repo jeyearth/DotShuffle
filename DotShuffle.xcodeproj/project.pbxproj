@@ -13,6 +13,7 @@
 		F4602AA02B7E0AF3007DC29E /* EditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4602A9F2B7E0AF3007DC29E /* EditButton.swift */; };
 		F48E6B142BF6E5F90060E7B8 /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E6B132BF6E5F90060E7B8 /* Function.swift */; };
 		F48E6B182BF6EBD00060E7B8 /* ListBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E6B172BF6EBD00060E7B8 /* ListBlockView.swift */; };
+		F4D1D29D2BFAEAB60093F911 /* ModeSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1D29C2BFAEAB50093F911 /* ModeSetting.swift */; };
 		F4F46CAE2B7501FD00BD9989 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F46CAD2B7501FD00BD9989 /* AddView.swift */; };
 		F4F46CB02B75C0D400BD9989 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F46CAF2B75C0D400BD9989 /* AddButton.swift */; };
 		F4F6FA952B73B4EF009317B6 /* PowerWordTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F6FA942B73B4EF009317B6 /* PowerWordTwo.swift */; };
@@ -32,6 +33,7 @@
 		F48B05332BD61A2300408926 /* DotShuffle-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "DotShuffle-Info.plist"; sourceTree = "<group>"; };
 		F48E6B132BF6E5F90060E7B8 /* Function.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
 		F48E6B172BF6EBD00060E7B8 /* ListBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListBlockView.swift; sourceTree = "<group>"; };
+		F4D1D29C2BFAEAB50093F911 /* ModeSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSetting.swift; sourceTree = "<group>"; };
 		F4F46CAD2B7501FD00BD9989 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
 		F4F46CAF2B75C0D400BD9989 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		F4F6FA912B73B4EF009317B6 /* DotShuffle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DotShuffle.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +83,7 @@
 				F4F6FAA42B74DFB2009317B6 /* ListView.swift */,
 				F48E6B172BF6EBD00060E7B8 /* ListBlockView.swift */,
 				F43314042BF44971001D9C9A /* ShuffleButton.swift */,
+				F4D1D29C2BFAEAB50093F911 /* ModeSetting.swift */,
 				F4F46CAD2B7501FD00BD9989 /* AddView.swift */,
 				F4F46CAF2B75C0D400BD9989 /* AddButton.swift */,
 				F45BB74D2B761B6900A6AF05 /* EditView.swift */,
@@ -173,6 +176,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4F46CAE2B7501FD00BD9989 /* AddView.swift in Sources */,
+				F4D1D29D2BFAEAB60093F911 /* ModeSetting.swift in Sources */,
 				F4F6FAA52B74DFB2009317B6 /* ListView.swift in Sources */,
 				F43314052BF44971001D9C9A /* ShuffleButton.swift in Sources */,
 				F48E6B142BF6E5F90060E7B8 /* Function.swift in Sources */,

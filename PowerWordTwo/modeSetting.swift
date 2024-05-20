@@ -8,8 +8,25 @@
 import SwiftUI
 
 struct ModeSetting: View {
+    @State private var showingModeSheet: Bool = false
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            Button {
+                showingModeSheet.toggle()
+            } label: {
+                 Image(systemName: "wand.and.stars")
+                    .foregroundColor(Color.gray)
+                    .font(.title)
+                    .padding()
+            } // Buttonここまで
+            .sheet(isPresented: $showingModeSheet) {
+                VStack {
+                    Text("aaa")
+                }
+                .presentationDetents([.medium]) // ⬅︎
+            } // sheetここまで
+            Spacer()
+        } // HStackここまで
     }
 }
 
