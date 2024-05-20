@@ -68,6 +68,17 @@ final class WordData: ObservableObject {
         lists.removeAll { $0.id == dotlist.id}
     }
     
+    // wordを渡して所属するlistを返す関数
+//    func getDotListContainingWord(_ word: Word) -> DotList? {
+//        for dotList in lists {
+////            if let index = dotList.dotlists.firstIndex(where: { $0.id == word.id }) {
+//            if dotList.dotlists.firstIndex(where: { $0.id == word.id }) != nil {
+//                return dotList
+//            }
+//        }
+//        return nil
+//    }
+    
     private static func getWordsFileURL() throws -> URL {
         FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
             .appendingPathComponent("words.data")
