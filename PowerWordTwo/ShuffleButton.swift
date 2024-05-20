@@ -13,6 +13,8 @@ struct ShuffleButton: View {
     @Binding var selectedNum: Int
     @Binding var beforeNum: Int
     
+    @State var selectedListNum: Int = 0
+    
     @State private var isShowAlert: Bool = false
     
     var body: some View {
@@ -38,10 +40,25 @@ struct ShuffleButton: View {
             .alert("Error", isPresented: $isShowAlert) {
             } message: {
                 // アラートのメッセージ...
-                if data.lists[0].dotlists.count == 1 {
-                    Text("ワードがひとつです。")
-                } else if data.lists[0].dotlists.count == 0 {
-                    Text("ワードがありません。")
+
+                let trueIndices = data.lists.enumerated().compactMap { (index, dotList) -> Int? in
+                    if dotList.isshow {
+                        return index
+                    } else {
+                        return nil
+                    }
+                }
+                
+                if trueIndices.count == 0 {
+                    VStack {
+                        Text("表示がオンのリストがありません。\n表示したいリストをオンにしてください。")
+                    }
+                } else {
+                    if data.lists[0].dotlists.count == 1 {
+                        Text("ワードがひとつです。")
+                    } else if data.lists[0].dotlists.count == 0 {
+                        Text("ワードがありません。")
+                    }
                 }
             }
             .padding()
@@ -54,17 +71,50 @@ struct ShuffleButton: View {
     }
     
     func wordShuffle() {
-        if data.lists[0].dotlists.count > 1 {
-            while selectedNum == beforeNum {
-                selectedNum = Int.random(in: 0...(data.lists[0].dotlists.count-1))
+//        if data.lists[0].dotlists.count > 1 {
+//            while selectedNum == beforeNum {
+//                selectedNum = Int.random(in: 0...(data.lists[0].dotlists.count-1))
+//            }
+//            beforeNum = selectedNum
+//            selectedWord = data.lists[0].dotlists[selectedNum]
+//            doShuffle()
+//        } else {
+//            isShowAlert.toggle()
+//        }
+        
+        let trueIndices = data.lists.enumerated().compactMap { (index, dotList) -> Int? in
+            if dotList.isshow {
+                return index
+            } else {
+                return nil
             }
-            beforeNum = selectedNum
-            selectedWord = data.lists[0].dotlists[selectedNum]
-            doShuffle()
+        }
+        
+        print(trueIndices)
+        
+        if trueIndices.count > 0 {
+            if trueIndices.count > 1 {
+                selectedListNum = trueIndices[Int.random(in: 0...(trueIndices.count-1))]
+            } else {
+                selectedListNum = 0
+            }
+            
+            if data.lists[selectedListNum].dotlists.count > 1 {
+                while selectedNum == beforeNum {
+                    selectedNum = Int.random(in: 0...(data.lists[selectedListNum].dotlists.count-1))
+                }
+                beforeNum = selectedNum
+                selectedWord = data.lists[selectedListNum].dotlists[selectedNum]
+                doShuffle()
+            } else {
+                isShowAlert.toggle()
+            }
         } else {
             isShowAlert.toggle()
         }
-    }
+        
+    } // wordShuffle()ここまで
+    
 }
 
 #Preview {
