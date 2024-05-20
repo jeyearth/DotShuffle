@@ -23,7 +23,7 @@ struct ModeSetting: View {
                 VStack {
                     Text("aaa")
                 }
-                .presentationDetents([.medium]) // ⬅︎
+                .presentationDetents([.medium])
             } // sheetここまで
             Spacer()
         } // HStackここまで
