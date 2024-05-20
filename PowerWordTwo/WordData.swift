@@ -23,6 +23,13 @@ struct DotList: Identifiable, Hashable, Codable {
         self.isshow = isshow
         self.dotlists = dotlists
     }
+    
+    init() {
+        self.id = UUID()
+        self.name = ""
+        self.isshow = false
+        self.dotlists = []
+    }
 }
 
 final class WordData: ObservableObject {

@@ -8,11 +8,40 @@
 import SwiftUI
 
 struct AddListView: View {
+    @Binding var newList: DotList
+    @Binding var showingAddListSheet: Bool
+    
+    @State private var inputText: String = ""
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            List {
+                ZStack(alignment: .topLeading) {
+                    TextEditor(text: $inputText)
+                        .frame(height: 200)
+                        .onChange(of: inputText) {
+                            // inputTextが変更されたときに、newWord.textも更新します
+                            newList.name = inputText
+                        }
+                        .disableAutocorrection(true)
+                    
+                    if newList.name.isEmpty {
+                        Text("ここにリスト名を入力してください。")
+                            .foregroundColor(Color(uiColor: .placeholderText))
+                            .allowsHitTesting(false)
+                            .padding(7)
+                            .padding(.top, 2)
+                    }
+                }
+            }
+            //Spacer()
+        } //VStackここまで
+                .edgesIgnoringSafeArea(.bottom)
     }
 }
 
 #Preview {
-    AddListView()
+    AddListView(
+        newList: .constant(DotList()), showingAddListSheet: .constant(true)
+    )
 }

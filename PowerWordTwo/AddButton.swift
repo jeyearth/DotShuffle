@@ -53,7 +53,7 @@ struct AddButton: View {
                             }
                         }
                 } // NavigationStackここまで
-            }
+            } // 
             .buttonStyle()
         } // HStackここまで
     } // bodyここまで

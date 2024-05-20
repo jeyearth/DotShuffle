@@ -11,6 +11,8 @@ struct ListBlockView: View {
     @EnvironmentObject var data: WordData
     @State private var selection: Word?
     
+    @State private var showingAddListSheet = false
+    
     var body: some View {
         VStack {
 //            List(data.lists) { list in
@@ -61,6 +63,8 @@ struct ListBlockView: View {
                 } // Sectionここまで
             } // Listここまで
             .navigationTitle("List")
+//            .navigationBarTitle(Text("Configure List Items"), displayMode: .inline)
+            .navigationBarItems(trailing: AddListButton())
         } // VStackここまで
     } // body ここまで
     

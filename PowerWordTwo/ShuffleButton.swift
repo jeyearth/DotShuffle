@@ -71,20 +71,13 @@ struct ShuffleButton: View {
     }
     
     func wordShuffle() {
-//        if data.lists[0].dotlists.count > 1 {
-//            while selectedNum == beforeNum {
-//                selectedNum = Int.random(in: 0...(data.lists[0].dotlists.count-1))
-//            }
-//            beforeNum = selectedNum
-//            selectedWord = data.lists[0].dotlists[selectedNum]
-//            doShuffle()
-//        } else {
-//            isShowAlert.toggle()
-//        }
-        
         let trueIndices = data.lists.enumerated().compactMap { (index, dotList) -> Int? in
             if dotList.isshow {
-                return index
+                if dotList.dotlists.count != 0 {
+                    return index
+                } else {
+                    return nil
+                }
             } else {
                 return nil
             }
