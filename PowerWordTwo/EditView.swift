@@ -4,83 +4,106 @@
 //
 //  Created by 平野慈英 on 2024/02/09.
 //
-
+//
 import SwiftUI
 
 struct EditView: View {
     @EnvironmentObject var data: WordData
     @Binding var word: Word
     
-    @FocusState var isFocused: Bool
-    
-    @State var selectionValue = "Inbox"
-    
     @State private var selectedList: DotList?
     
-//    init(word: Binding<Word>) {
-//        self._word = word
-////        _selectedList = State(initialValue: data.getDotListContainingWord(word.wrappedValue))
-//        _selectedList = State(initialValue: 
-//                                data.lists.firstIndex(where: { $0.dotlists.contains(word.wrappedValue) })
-//        )
-//    }
+    @State private var editedText: String
+    
+    init(word: Binding<Word>) {
+        self._word = word
+        self._editedText = State(initialValue: word.wrappedValue.text)
+    }
+    
+    @State var lists:[DotList]?
     
     var body: some View {
         VStack {
+            
             List {
-//                Picker("List", selection: $selectedList) {
-//                    ForEach(data.lists, id: \.self) { list in
-//                        Text(list.name).tag(list)
-//                    }
-//                }
-//                .pickerStyle(MenuPickerStyle())
-//                .onChange(of: selectedList) { newList in
-////                    if let newList = newList {
-////                        changeList(newList)
-////                    }
-//                    
-//                    if selectedList != nil {
-//                        changeList(selectedList ?? DotList())
-//                    }
-//                }
-                
-                ZStack(alignment: .topLeading) {
-                    TextEditor(text: $word.text)
-                        .frame(height: 200)
-                        .focused($isFocused)
-                    if word.text.isEmpty {
-                        Text("ここに文字を入力してください。")
-                            .foregroundColor(Color(uiColor: .placeholderText))
-                            .allowsHitTesting(false)
-                            .padding(7)
-                            .padding(.top, 2)
+                Picker("List", selection: $selectedList) {
+                    ForEach(data.lists, id: \.self) { list in
+                        Text(list.name).tag(DotList?.some(list))
                     }
                 }
+                .onChange(of: selectedList ?? DotList(), initial: false) { oldList, newList in
+                    print("onChange Start!!")
+                    if oldList.name != "" {
+                        if oldList.id != newList.id {
+                            changeList(word, from: oldList, to: newList)
+                            print("onChange Done!!!!!")
+                            data.save()
+                        }
+                    }
+                }
+                
+                ZStack(alignment: .topLeading) {
+                    VStack {
+                        TextEditor(text: $editedText)
+                            .frame(height: 200)
+                            .onChange(of: editedText) {
+                                // inputTextが変更されたときに、newWord.textも更新します
+                                word.text = editedText
+                            }
+                            .disableAutocorrection(true)
+                        if word.text.isEmpty {
+                            Text("ここに文字を入力してください。")
+                                .foregroundColor(Color(uiColor: .placeholderText))
+                                .allowsHitTesting(false)
+                                .padding(7)
+                                .padding(.top, 2)
+                        }
+                    }
+                } // ZStackここまで
             } // Listここまで
         } // VStackここまで
+        .onAppear {
+            initializeSelectedList(word: word)
+        }
     } // bodyここまで
     
-//    // wordを渡して所属するlistを返す関数
-//    func getDotListContainingWord(_ word: Word) -> DotList? {
-//        for dotList in data.lists {
-////            if let index = dotList.dotlists.firstIndex(where: { $0.id == word.id }) {
-//            if dotList.dotlists.firstIndex(where: { $0.id == word.id }) != nil {
-//                return dotList
-//            }
-//        }
-//        return nil
-//    }
+    func initializeSelectedList(word: Word) {
+        guard !data.lists.isEmpty else {
+            selectedList = nil
+            return
+        }
+        
+        if let containingList = data.getDotListContainingWord(word) {
+            selectedList = containingList
+        } else {
+            selectedList = data.lists.first
+        }
+        print("initialize done")
+    }
     
-    func changeList(_ newList: DotList) {
-         // wordが現在のリストから削除される
+    func changeList(_ word: Word, from oldList: DotList, to newList: DotList) {
+        if let oldListIndex = data.lists.firstIndex(where: { $0.id == oldList.id }) {
+            print("oldListIndex→ \(oldListIndex)")
+            data.lists[oldListIndex].dotlists.removeAll(where: { $0.id == word.id })
+        }
+        
+        if let newListIndex = data.lists.firstIndex(where: { $0.id == newList.id }) {
+            print("newListIndex→ \(newListIndex)")
+            print("word→ \(word)")
+            data.lists[newListIndex].dotlists.append(word)
+        }
+        print("chnageList success")
+    }
+    
+    func updateWordList(to newListID: UUID) {
         if let oldListIndex = data.lists.firstIndex(where: { $0.dotlists.contains(word) }) {
             data.lists[oldListIndex].dotlists.removeAll(where: { $0.id == word.id })
-         }
+        }
         
-         // wordが新しいリストに追加される
-//         newList.dotlists.append(word)
-     }
-    
+        if let newListIndex = data.lists.firstIndex(where: { $0.id == newListID }) {
+            data.lists[newListIndex].dotlists.append(word)
+        }
+    }
 }
 
 #Preview {

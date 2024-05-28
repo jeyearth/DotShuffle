@@ -20,17 +20,6 @@ struct ShuffleButton: View {
     var body: some View {
         VStack {
             Button {
-//                print(data.lists[0].dotlists[1].text)
-//                data.addList(
-//                    DotList(name: "two", dotlists:
-//                        [
-//                            Word(text: "Connecting the Dots"),
-//                            Word(text: "Stay hungry, Stay foolish"),
-//                            Word(text: "If today were the last day of my life, would I want to do what I am about to do today?"),
-//                        ]
-//                    )
-//                )
-                
                 wordShuffle()
             } label: {
                 Image(systemName: "shuffle")
@@ -40,7 +29,6 @@ struct ShuffleButton: View {
             .alert("Error", isPresented: $isShowAlert) {
             } message: {
                 // アラートのメッセージ...
-
                 let trueIndices = data.lists.enumerated().compactMap { (index, dotList) -> Int? in
                     if dotList.isshow {
                         return index
@@ -83,13 +71,13 @@ struct ShuffleButton: View {
             }
         }
         
-        print(trueIndices)
+//        print(trueIndices)
         
         if trueIndices.count > 0 {
             if trueIndices.count > 1 {
                 selectedListNum = trueIndices[Int.random(in: 0...(trueIndices.count-1))]
             } else {
-                selectedListNum = 0
+                selectedListNum = trueIndices[0]
             }
             
             if data.lists[selectedListNum].dotlists.count > 1 {
@@ -105,7 +93,6 @@ struct ShuffleButton: View {
         } else {
             isShowAlert.toggle()
         }
-        
     } // wordShuffle()ここまで
     
 }

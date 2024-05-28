@@ -11,6 +11,7 @@
 		F4437E192BAC62AE00A01BDE /* Modifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4437E182BAC62AE00A01BDE /* Modifier.swift */; };
 		F45BB74E2B761B6900A6AF05 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45BB74D2B761B6900A6AF05 /* EditView.swift */; };
 		F4602AA02B7E0AF3007DC29E /* EditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4602A9F2B7E0AF3007DC29E /* EditButton.swift */; };
+		F48D06F22C00D52300B137B8 /* ListContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48D06F12C00D52300B137B8 /* ListContentView.swift */; };
 		F48E6B142BF6E5F90060E7B8 /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E6B132BF6E5F90060E7B8 /* Function.swift */; };
 		F48E6B182BF6EBD00060E7B8 /* ListBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E6B172BF6EBD00060E7B8 /* ListBlockView.swift */; };
 		F4D1D29D2BFAEAB60093F911 /* ModeSettingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1D29C2BFAEAB50093F911 /* ModeSettingButton.swift */; };
@@ -34,6 +35,7 @@
 		F45BB74D2B761B6900A6AF05 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		F4602A9F2B7E0AF3007DC29E /* EditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButton.swift; sourceTree = "<group>"; };
 		F48B05332BD61A2300408926 /* DotShuffle-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "DotShuffle-Info.plist"; sourceTree = "<group>"; };
+		F48D06F12C00D52300B137B8 /* ListContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListContentView.swift; sourceTree = "<group>"; };
 		F48E6B132BF6E5F90060E7B8 /* Function.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
 		F48E6B172BF6EBD00060E7B8 /* ListBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListBlockView.swift; sourceTree = "<group>"; };
 		F4D1D29C2BFAEAB50093F911 /* ModeSettingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSettingButton.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				F4F6FAA22B74DF92009317B6 /* HomeView.swift */,
 				F4F6FAA42B74DFB2009317B6 /* ListView.swift */,
 				F48E6B172BF6EBD00060E7B8 /* ListBlockView.swift */,
+				F48D06F12C00D52300B137B8 /* ListContentView.swift */,
 				F43314042BF44971001D9C9A /* ShuffleButton.swift */,
 				F4D1D29E2BFAEEBE0093F911 /* ModeSettingView.swift */,
 				F4D1D29C2BFAEAB50093F911 /* ModeSettingButton.swift */,
@@ -184,6 +187,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F48D06F22C00D52300B137B8 /* ListContentView.swift in Sources */,
 				F4F46CAE2B7501FD00BD9989 /* AddView.swift in Sources */,
 				F4D1D29D2BFAEAB60093F911 /* ModeSettingButton.swift in Sources */,
 				F4F6FAA52B74DFB2009317B6 /* ListView.swift in Sources */,

@@ -17,6 +17,8 @@ struct HomeView: View {
     @State private var showingSheet: Bool = false
     @State private var isShowAlert: Bool = false
     
+    @State var selectedListNum: Int = 0
+    
     var body: some View {
         ZStack(alignment: .bottom) {
             VStack {
@@ -40,7 +42,8 @@ struct HomeView: View {
             .padding()
         } // ZStackここまで
         .onAppear {
-            initializeSelectedWord()
+//            initializeSelectedWord()
+            wordShuffle()
         }
     } // bodyここまで
     
@@ -54,6 +57,43 @@ struct HomeView: View {
             selectedNum = randomIndex
         }
     }
+    
+    func wordShuffle() {
+        data.load()
+        let trueIndices = data.lists.enumerated().compactMap { (index, dotList) -> Int? in
+            if dotList.isshow {
+                if dotList.dotlists.count != 0 {
+                    return index
+                } else {
+                    return nil
+                }
+            } else {
+                return nil
+            }
+        }
+        
+        if trueIndices.count > 0 {
+            if trueIndices.count > 1 {
+                selectedListNum = trueIndices[Int.random(in: 0...(trueIndices.count-1))]
+            } else {
+                selectedListNum = trueIndices[0]
+            }
+            
+            if data.lists[selectedListNum].dotlists.count > 1 {
+                while selectedNum == beforeNum {
+                    selectedNum = Int.random(in: 0...(data.lists[selectedListNum].dotlists.count-1))
+                }
+                beforeNum = selectedNum
+                selectedWord = data.lists[selectedListNum].dotlists[selectedNum]
+                doShuffle()
+            } else {
+                isShowAlert.toggle()
+            }
+        } else {
+            isShowAlert.toggle()
+        }
+    } // wordShuffle()ここまで
+    
 }
 
 #Preview {

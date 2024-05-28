@@ -28,6 +28,7 @@ struct ModeSettingButton: View {
                             ToolbarItem(placement: .cancellationAction) {
                                 Button {
                                     showingModeSheet = false
+                                    print(data.lists)
                                 } label: {
                                     Image(systemName: "xmark")
                                         .foregroundColor(.blue)
@@ -36,6 +37,9 @@ struct ModeSettingButton: View {
                                 }
                             }
                         } // toolbarここまで
+                        .onDisappear {
+                            data.save()
+                        }
                 } // NavigationStackここまで
                 .presentationDetents([.medium])
             } // sheetここまで

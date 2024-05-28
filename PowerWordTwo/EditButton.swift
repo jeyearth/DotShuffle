@@ -28,13 +28,14 @@ struct EditButton: View {
                             ToolbarItem {
                                 Button {
                                     showingSheet = false
-                                    
-                                    if let index = data.lists[0].dotlists.firstIndex(where: { $0.id == selectedWord.id }) {
-                                        // data.wordsの要素を直接変更
-                                        data.lists[0].dotlists[index].text = selectedWord.text
-                                        data.save()
-                                    } else {
-                                        print("Item not found")
+                                    if let listIndex =  data.lists.firstIndex(where: {$0.id == data.getDotListContainingWord(selectedWord)?.id}) {
+                                        if let index = data.lists[listIndex].dotlists.firstIndex(where: { $0.id == selectedWord.id }) {
+                                            // data.wordsの要素を直接変更
+                                            data.lists[listIndex].dotlists[index].text = selectedWord.text
+                                            data.save()
+                                        } else {
+                                            print("Item not found")
+                                        }
                                     }
                                     
                                 } label: {
