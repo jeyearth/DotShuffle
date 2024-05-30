@@ -14,10 +14,21 @@ struct ModeSettingView: View {
         VStack {
             List {
                 ForEach(data.lists) { list in
-                    if let index = data.lists.firstIndex(where: {$0.id == list.id}) {
-                        Toggle(isOn: $data.lists[index].isshow, label: {
-                            Text(list.name)
-                        })
+                    let listIndex = data.lists.firstIndex(where: { $0.id == list.id }) ?? 0
+                    if listIndex == 0 {
+                        Section {
+                            if let index = data.lists.firstIndex(where: {$0.id == list.id}) {
+                                Toggle(isOn: $data.lists[index].isshow, label: {
+                                    Text(list.name)
+                                })
+                            }
+                        }
+                    } else {
+                        if let index = data.lists.firstIndex(where: {$0.id == list.id}) {
+                            Toggle(isOn: $data.lists[index].isshow, label: {
+                                Text(list.name)
+                            })
+                        }
                     }
                 } // ForEachここまで
             } // Listここまで
