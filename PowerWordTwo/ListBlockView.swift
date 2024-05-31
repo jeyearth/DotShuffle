@@ -40,10 +40,10 @@ struct ListBlockView: View {
                             Label("Delete", systemImage: "trash")
                         }
                     }
-                    .navigationTitle("List")
-                    .navigationBarItems(trailing: AddListButton())
                 }
             } // Lustここまで
+            .navigationTitle("List")
+            .navigationBarItems(trailing: AddListButton())
             
 //            List {
 //                ForEach(data.lists) { list in
