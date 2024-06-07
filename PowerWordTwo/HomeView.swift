@@ -36,27 +36,15 @@ struct HomeView: View {
                 .padding(.bottom, 100)
             } // VStackここまで
             HStack {
-                EditButton(selectedWord: $selectedWord)
+                EditWordButton(selectedWord: $selectedWord, selectedList: data.getDotListContainingWord(selectedWord) ?? DotList(), listIndex: data.lists.firstIndex{ $0.dotlists.contains(where: { $0.id == selectedWord.id }) } ?? 0)
                 AddButton()
             }
             .padding()
         } // ZStackここまで
         .onAppear {
-//            initializeSelectedWord()
             wordShuffle()
         }
     } // bodyここまで
-    
-    func initializeSelectedWord() {
-        data.load()
-        if data.lists[0].dotlists.count != 0 {
-            // ランダムな単語と番号を初期化する
-            let randomIndex = Int.random(in: 0..<data.lists[0].dotlists.count)
-            beforeNum = randomIndex
-            selectedWord = data.lists[0].dotlists[randomIndex]
-            selectedNum = randomIndex
-        }
-    }
     
     func wordShuffle() {
         data.load()

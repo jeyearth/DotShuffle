@@ -12,16 +12,18 @@ struct ListView: View {
     @State private var selection: Word?
     
     var body: some View {
-        NavigationStack {
-            ZStack(alignment: .bottom) {
-                ListBlockView()
-                
-                HStack {
-                    AddButton()
-                }
-                .padding()
-            } // ZStackここまで
-        } //NavigationStackここまで
+        VStack {
+            NavigationStack {
+                ZStack(alignment: .bottom) {
+                    ListBlockView()
+                    
+                    HStack {
+                        AddButton()
+                    }
+                    .padding()
+                } // ZStackここまで
+            } //NavigationStackここまで
+        }
     } // bodyここまで
     
 }

@@ -68,6 +68,20 @@ final class WordData: ObservableObject {
         lists.removeAll { $0.id == dotlist.id}
     }
     
+    func changeList(_ word: Word, from oldList: DotList, to newList: DotList) {
+        if let oldListIndex = lists.firstIndex(where: { $0.id == oldList.id }) {
+            print("oldListIndex→ \(oldListIndex)")
+            lists[oldListIndex].dotlists.removeAll(where: { $0.id == word.id })
+        }
+        
+        if let newListIndex = lists.firstIndex(where: { $0.id == newList.id }) {
+            print("newListIndex→ \(newListIndex)")
+            print("word→ \(word)")
+            lists[newListIndex].dotlists.append(word)
+        }
+        print("chnageList success")
+    }
+    
     // wordを渡して所属するlistを返す関数
     func getDotListContainingWord(_ word: Word) -> DotList? {
         return lists.first { $0.dotlists.contains(where: { $0.id == word.id }) }

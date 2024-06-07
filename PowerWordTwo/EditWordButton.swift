@@ -7,10 +7,23 @@
 
 import SwiftUI
 
-struct EditButton: View {
+struct EditWordButton: View {
     @EnvironmentObject var data: WordData
     @Binding var selectedWord: Word
     @State private var showingSheet: Bool = false
+    @State var toList: DotList = DotList()
+    
+    var selectedList: DotList
+    var listIndex: Int
+    
+    init(
+        selectedWord: Binding<Word>, selectedList: DotList, listIndex: Int
+    ) {
+        self._selectedWord = selectedWord
+        self.selectedList = selectedList
+        self.listIndex = listIndex
+        self._toList = State(initialValue: selectedList)
+    }
     
     var body: some View {
         HStack {
@@ -23,7 +36,15 @@ struct EditButton: View {
             } // Buttonここまで
             .sheet(isPresented: $showingSheet) {
                 NavigationStack {
-                    EditView(word: $selectedWord)
+                    EditView(word: $selectedWord, toList: $toList)
+                        .onDisappear {
+                            if !toList.name.isEmpty {
+                                if data.lists[listIndex].id != toList.id {
+                                    data.changeList(selectedWord, from: data.lists[listIndex], to: toList)
+                                    data.save()
+                                }
+                            }
+                        }
                         .toolbar {
                             ToolbarItem {
                                 Button {
@@ -50,10 +71,14 @@ struct EditButton: View {
             }
             .buttonStyle()
         } // HStackここまで
-    }
+    } // bodyここまで
 }
 
 #Preview {
-    EditButton(selectedWord: .constant(Word()))
+    EditWordButton(
+        selectedWord: .constant(Word()),
+        selectedList: DotList(),
+        listIndex: 0
+    )
         .environmentObject(WordData())
 }
