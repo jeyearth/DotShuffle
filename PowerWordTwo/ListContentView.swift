@@ -26,6 +26,7 @@ struct ListContentView: View {
     @State private var selectedItems: Set<Int> = []
     
     @State private var editMode: EditMode = .inactive
+    @State private var isShowAlert: Bool = false
     
     var body: some View {
         //        VStack {
@@ -171,29 +172,47 @@ struct ListContentView: View {
             trailing:
                 HStack {
                     if editMode == .active {
-                        Menu("移動") {
-                            Text("他のリストに移動する")
-                            Picker("List", selection: $pickerList) {
-                                ForEach(data.lists, id: \.self) { list in
-                                    Text(list.name).tag(DotList?.some(list))
+                        if selectedItems.count != 0 {
+                            Menu("移動") {
+                                Text("他のリストに移動する")
+                                Picker("List", selection: $pickerList) {
+                                    ForEach(data.lists, id: \.self) { list in
+                                        Text(list.name).tag(DotList?.some(list))
+                                    }
                                 }
+                                .onChange(of: pickerList, initial: false) { oldList, newList in
+                                    if selectedItems.count != 0 && newList != data.lists[listIndex] {
+                                        print("onChange Start!!")
+                                        if oldList.id != newList.id {
+                                            changeListWords(selectedItems, from: oldList, to: newList)
+                                            print("onChange Done!!!!!")
+                                            data.save()
+                                        }
+                                        editMode = .inactive
+                                    }
+                                    
+                                    if selectedItems.count == 0 {
+                                        self.pickerList = data.lists[listIndex]
+                                    }
+                                    
+                                } // onChangeここまで
+                            } // Menuここまで
+                        } else {
+                            Button {
+                                isShowAlert = true
+                            } label: {
+                                Text("移動")
                             }
-                            .onChange(of: pickerList, initial: false) { oldList, newList in
-                                print("onChange Start!!")
-                                if oldList.id != newList.id {
-                                    changeListWords(selectedItems, from: oldList, to: newList)
-                                    print("onChange Done!!!!!")
-                                    data.save()
-                                }
-                                editMode = .inactive
-                            }
-                        }
-                    }
+                        } // if ここまで
+                    } // if ここまで
                     
                     EditButton()
                 }
         )
         .environment(\.editMode, $editMode)
+        .alert(isPresented: $isShowAlert) {
+            Alert(title: Text("エラー"), message: Text("選択されていません。"), dismissButton: .default(Text("OK")))
+        }
         .navigationTitle(selectedList.name)
     } // bodyここまで
     
