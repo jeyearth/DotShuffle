@@ -13,6 +13,7 @@ struct HomeView: View {
     
     @State private var selectedNum: Int = 0
     @State private var beforeNum: Int = 0
+    @State private var beforeListNum: Int = 0
     
     @State private var showingSheet: Bool = false
     @State private var isShowAlert: Bool = false
@@ -31,7 +32,8 @@ struct HomeView: View {
                 ShuffleButton(
                     selectedWord: $selectedWord,
                     selectedNum: $selectedNum,
-                    beforeNum: $beforeNum
+                    beforeNum: $beforeNum,
+                    beforeListNum: $beforeListNum
                 )
                 .padding(.bottom, 100)
             } // VStackここまで
@@ -42,45 +44,17 @@ struct HomeView: View {
             .padding()
         } // ZStackここまで
         .onAppear {
-            wordShuffle()
+            doShuffle(
+                data: data,
+                selectedWord: &selectedWord,
+                selectedNum: &selectedNum,
+                beforeNum: &beforeNum,
+                beforeListNum: &beforeListNum,
+                selectedListNum: &selectedListNum,
+                isShowAlert: &isShowAlert
+            )
         }
     } // bodyここまで
-    
-    func wordShuffle() {
-        data.load()
-        let trueIndices = data.lists.enumerated().compactMap { (index, dotList) -> Int? in
-            if dotList.isshow {
-                if dotList.dotlists.count != 0 {
-                    return index
-                } else {
-                    return nil
-                }
-            } else {
-                return nil
-            }
-        }
-        
-        if trueIndices.count > 0 {
-            if trueIndices.count > 1 {
-                selectedListNum = trueIndices[Int.random(in: 0...(trueIndices.count-1))]
-            } else {
-                selectedListNum = trueIndices[0]
-            }
-            
-            if data.lists[selectedListNum].dotlists.count > 1 {
-                while selectedNum == beforeNum {
-                    selectedNum = Int.random(in: 0...(data.lists[selectedListNum].dotlists.count-1))
-                }
-                beforeNum = selectedNum
-                selectedWord = data.lists[selectedListNum].dotlists[selectedNum]
-                doShuffle()
-            } else {
-                isShowAlert.toggle()
-            }
-        } else {
-            isShowAlert.toggle()
-        }
-    } // wordShuffle()ここまで
     
 }
 

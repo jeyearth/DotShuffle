@@ -12,6 +12,7 @@ struct ShuffleButton: View {
     @Binding var selectedWord: Word
     @Binding var selectedNum: Int
     @Binding var beforeNum: Int
+    @Binding var beforeListNum: Int
     
     @State var selectedListNum: Int = 0
     
@@ -20,7 +21,15 @@ struct ShuffleButton: View {
     var body: some View {
         VStack {
             Button {
-                wordShuffle()
+                doShuffle(
+                    data: data,
+                    selectedWord: &selectedWord,
+                    selectedNum: &selectedNum,
+                    beforeNum: &beforeNum,
+                    beforeListNum: &beforeListNum,
+                    selectedListNum: &selectedListNum,
+                    isShowAlert: &isShowAlert
+                )
             } label: {
                 Image(systemName: "shuffle")
                     .padding(.leading, 10)
@@ -42,9 +51,9 @@ struct ShuffleButton: View {
                         Text("表示がオンのリストがありません。\n表示したいリストをオンにしてください。")
                     }
                 } else {
-                    if data.lists[0].dotlists.count == 1 {
+                    if data.lists[trueIndices[0]].dotlists.count == 1 {
                         Text("ワードがひとつです。")
-                    } else if data.lists[0].dotlists.count == 0 {
+                    } else if data.lists[trueIndices[0]].dotlists.count == 0 {
                         Text("ワードがありません。")
                     }
                 }
@@ -58,50 +67,14 @@ struct ShuffleButton: View {
         }
     }
     
-    func wordShuffle() {
-        let trueIndices = data.lists.enumerated().compactMap { (index, dotList) -> Int? in
-            if dotList.isshow {
-                if dotList.dotlists.count != 0 {
-                    return index
-                } else {
-                    return nil
-                }
-            } else {
-                return nil
-            }
-        }
-        
-//        print(trueIndices)
-        
-        if trueIndices.count > 0 {
-            if trueIndices.count > 1 {
-                selectedListNum = trueIndices[Int.random(in: 0...(trueIndices.count-1))]
-            } else {
-                selectedListNum = trueIndices[0]
-            }
-            
-            if data.lists[selectedListNum].dotlists.count > 1 {
-                while selectedNum == beforeNum {
-                    selectedNum = Int.random(in: 0...(data.lists[selectedListNum].dotlists.count-1))
-                }
-                beforeNum = selectedNum
-                selectedWord = data.lists[selectedListNum].dotlists[selectedNum]
-                doShuffle()
-            } else {
-                isShowAlert.toggle()
-            }
-        } else {
-            isShowAlert.toggle()
-        }
-    } // wordShuffle()ここまで
-    
 }
 
 #Preview {
     ShuffleButton(
         selectedWord: .constant(Word()),
         selectedNum: .constant(0),
-        beforeNum: .constant(0)
+        beforeNum: .constant(0),
+        beforeListNum: .constant(0)
     )
         .environmentObject(WordData())
 }
