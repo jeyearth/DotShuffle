@@ -17,33 +17,6 @@ struct ListBlockView: View {
     
     var body: some View {
         VStack {
-//            List(data.lists) { list in
-//                if data.lists.firstIndex(where: {$0.id == list.id}) == 0 {
-//                    Section {
-//                        NavigationLink(
-//                            destination: ListContentView(selectedList: list, listIndex: data.lists.firstIndex(where: {$0.id == list.id}) ?? 0)
-//                        ) {
-//                            Text(list.name)
-//                        } // NavigationLinkここまで
-//                    }
-//                } else {
-//                    NavigationLink(
-//                        destination: ListContentView(selectedList: list, listIndex: data.lists.firstIndex(where: {$0.id == list.id}) ?? 0)
-//                    ) {
-//                        Text(list.name)
-//                    } // NavigationLinkここまで
-//                    .swipeActions {
-//                        Button(role: .destructive) {
-//                            data.removeList(list)
-//                            data.save()
-//                        } label: {
-//                            Label("Delete", systemImage: "trash")
-//                        }
-//                    }
-//                }
-//            } // Lustここまで
-//            .navigationTitle("List")
-//            .navigationBarItems(trailing: AddListButton())
             
             List() {
                 Section {

@@ -172,9 +172,33 @@ struct ListContentView: View {
             trailing:
                 HStack {
                     if editMode == .active {
+                        //                        if selectedItems.count != 0 {
+                        //                            Button(role: .destructive) {
+                        //                                removeSelectedItems(selectedItems, listIndex)
+                        //                                selectedItems = []
+                        //                                editMode = .inactive
+                        //                                data.save()
+                        //                            } label: {
+                        //                                Label("Delete", systemImage: "trash")
+                        //                            }
+                        //                        } else {
+                        //                            Button {
+                        //                                isShowAlert = true
+                        //                            } label: {
+                        //                                Label("Delete", systemImage: "trash")
+                        //                            }
+                        //                        } // if ここまで
+                        
                         if selectedItems.count != 0 {
+                            Button(role: .destructive) {
+                                removeSelectedItems(selectedItems, listIndex)
+                                selectedItems = []
+                                editMode = .inactive
+                                data.save()
+                            } label: {
+                                Label("Delete", systemImage: "trash")
+                            }
                             Menu("移動") {
-                                Text("他のリストに移動する")
                                 Picker("List", selection: $pickerList) {
                                     ForEach(data.lists, id: \.self) { list in
                                         Text(list.name).tag(DotList?.some(list))
@@ -194,14 +218,20 @@ struct ListContentView: View {
                                     if selectedItems.count == 0 {
                                         self.pickerList = data.lists[listIndex]
                                     }
-                                    
                                 } // onChangeここまで
                             } // Menuここまで
                         } else {
-                            Button {
-                                isShowAlert = true
-                            } label: {
-                                Text("移動")
+                            HStack {
+                                Button {
+                                    isShowAlert = true
+                                } label: {
+                                    Label("Delete", systemImage: "trash")
+                                }
+                                Button {
+                                    isShowAlert = true
+                                } label: {
+                                    Text("移動")
+                                }
                             }
                         } // if ここまで
                     } // if ここまで
@@ -246,6 +276,13 @@ struct ListContentView: View {
         self.selectedItems = []
     }
     
+    func removeSelectedItems(_ selectedItems: Set<Int>, _ listindex: Int) {
+        let items = selectedItems.sorted(){ $0 > $1 }
+        print(items)
+        items.forEach { item in
+            data.remove(listIndex, data.lists[listIndex].dotlists[item])
+        }
+    }
 }
 
 #Preview {

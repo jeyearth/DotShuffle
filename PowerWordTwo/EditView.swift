@@ -28,21 +28,9 @@ struct EditView: View {
             List {
                 Picker("List", selection: $toList) {
                     ForEach(data.lists, id: \.self) { list in
-//                        Text(list.name).tag(toList?.some(list))
                         Text(list.name).tag(list)
-//                        Text(list.name).tag(list as DotList?)
                     }
                 }
-//                .onChange(of: toList, initial: false) { oldList, newList in
-//                    print("onChange Start!!")
-//                    if oldList.name != "" {
-//                        if oldList.id != newList.id {
-//                            changeList(word, from: oldList, to: newList)
-//                            print("onChange Done!!!!!")
-//                            data.save()
-//                        }
-//                    }
-//                }
                 
                 ZStack(alignment: .topLeading) {
                     VStack {
