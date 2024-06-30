@@ -8,11 +8,50 @@
 import SwiftUI
 
 struct ShuffleButtonTwo: View {
+    @EnvironmentObject var data: WordData
+    @State private var isShowAlert: Bool = false
+    
+    @Binding var shuffleData: ShuffleData
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Button {
+                doShuffleTwo(data: data, shuffleData: &shuffleData)
+            } label: {
+                Image(systemName: "shuffle")
+                    .padding(.leading, 10)
+                    .padding(.trailing, 10)
+            }
+            .alert("Error", isPresented: $shuffleData.isShowAlert) {
+            } message: {
+                // アラートのメッセージ...
+                if shuffleData.trueIndices.count == 0 {
+                    VStack {
+                        Text("表示がオンのリストがありません。\n表示したいリストをオンにしてください。")
+                    }
+                } else {
+                    if shuffleData.shuffleItemsCount == 0 {
+                        Text("ワードがありません。")
+                    } else if shuffleData.shuffleItemsCount == 1 {
+                        Text("ワードがひとつです。")
+                    }
+                }
+                
+            }
+            .padding()
+            .foregroundColor(Color.white)
+            .background(Color.blue)
+            .clipShape(RoundedRectangle(cornerRadius: 20))
+            .shadow(radius: 7)
+            .font(.title)
+        }
     }
+    
 }
 
 #Preview {
-    ShuffleButtonTwo()
+    ShuffleButtonTwo(
+        shuffleData: .constant(ShuffleData())
+    )
+    .environmentObject(WordData())
 }

@@ -20,21 +20,27 @@ struct HomeView: View {
     
     @State var selectedListNum: Int = 0
     
+    @State var shuffleData: ShuffleData = ShuffleData()
+    
     var body: some View {
         ZStack(alignment: .bottom) {
             VStack {
-                ModeSettingButton()
+                ModeSettingButton(shuffleData: $shuffleData)
                 Spacer()
-                Text("\(selectedWord.text)")
+//                Text("\(selectedWord.text)")
+//                    .frame(width: 340.0)
+//                Spacer()
+                Text("\(shuffleData.selectedWord.text)")
                     .frame(width: 340.0)
                 Spacer()
                 
-                ShuffleButton(
-                    selectedWord: $selectedWord,
-                    selectedNum: $selectedNum,
-                    beforeNum: $beforeNum,
-                    beforeListNum: $beforeListNum
-                )
+//                ShuffleButton(
+//                    selectedWord: $selectedWord,
+//                    selectedNum: $selectedNum,
+//                    beforeNum: $beforeNum,
+//                    beforeListNum: $beforeListNum
+//                )
+                ShuffleButtonTwo(shuffleData: $shuffleData)
                 .padding(.bottom, 100)
             } // VStackここまで
             HStack {
@@ -44,15 +50,8 @@ struct HomeView: View {
             .padding()
         } // ZStackここまで
         .onAppear {
-            doShuffle(
-                data: data,
-                selectedWord: &selectedWord,
-                selectedNum: &selectedNum,
-                beforeNum: &beforeNum,
-                beforeListNum: &beforeListNum,
-                selectedListNum: &selectedListNum,
-                isShowAlert: &isShowAlert
-            )
+            shuffleData = ShuffleData(data: data)
+            doShuffleTwo(data: data, shuffleData: &shuffleData)
         }
     } // bodyここまで
     

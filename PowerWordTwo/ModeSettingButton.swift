@@ -10,6 +10,7 @@ import SwiftUI
 struct ModeSettingButton: View {
     @EnvironmentObject var data: WordData
     @State private var showingModeSheet: Bool = false
+    @Binding var shuffleData: ShuffleData
     
     var body: some View {
         HStack {
@@ -39,6 +40,8 @@ struct ModeSettingButton: View {
                         } // toolbarここまで
                         .onDisappear {
                             data.save()
+                            shuffleData = ShuffleData(data: data)
+                            doShuffleTwo(data: data, shuffleData: &shuffleData)
                         }
                 } // NavigationStackここまで
                 .presentationDetents([.medium])
@@ -49,6 +52,8 @@ struct ModeSettingButton: View {
 }
 
 #Preview {
-    ModeSettingButton()
+    ModeSettingButton(
+        shuffleData: .constant(ShuffleData())
+    )
         .environmentObject(WordData())
 }
