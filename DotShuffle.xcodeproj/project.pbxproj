@@ -15,6 +15,8 @@
 		F48E6B142BF6E5F90060E7B8 /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E6B132BF6E5F90060E7B8 /* Function.swift */; };
 		F48E6B182BF6EBD00060E7B8 /* ListBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48E6B172BF6EBD00060E7B8 /* ListBlockView.swift */; };
 		F4CD9D722C3047EE0055ED89 /* ShuffleButtonTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CD9D712C3047EE0055ED89 /* ShuffleButtonTwo.swift */; };
+		F4CD9D782C3251BE0055ED89 /* WordEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CD9D772C3251BE0055ED89 /* WordEditView.swift */; };
+		F4CD9D7A2C3251CA0055ED89 /* WordEditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CD9D792C3251CA0055ED89 /* WordEditButton.swift */; };
 		F4D1D29D2BFAEAB60093F911 /* ModeSettingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1D29C2BFAEAB50093F911 /* ModeSettingButton.swift */; };
 		F4D1D29F2BFAEEBE0093F911 /* ModeSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1D29E2BFAEEBE0093F911 /* ModeSettingView.swift */; };
 		F4D1D2A12BFB05650093F911 /* AddListButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D1D2A02BFB05650093F911 /* AddListButton.swift */; };
@@ -40,6 +42,8 @@
 		F48E6B132BF6E5F90060E7B8 /* Function.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
 		F48E6B172BF6EBD00060E7B8 /* ListBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListBlockView.swift; sourceTree = "<group>"; };
 		F4CD9D712C3047EE0055ED89 /* ShuffleButtonTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShuffleButtonTwo.swift; sourceTree = "<group>"; };
+		F4CD9D772C3251BE0055ED89 /* WordEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordEditView.swift; sourceTree = "<group>"; };
+		F4CD9D792C3251CA0055ED89 /* WordEditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordEditButton.swift; sourceTree = "<group>"; };
 		F4D1D29C2BFAEAB50093F911 /* ModeSettingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSettingButton.swift; sourceTree = "<group>"; };
 		F4D1D29E2BFAEEBE0093F911 /* ModeSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSettingView.swift; sourceTree = "<group>"; };
 		F4D1D2A02BFB05650093F911 /* AddListButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListButton.swift; sourceTree = "<group>"; };
@@ -103,6 +107,8 @@
 				F4D1D2A02BFB05650093F911 /* AddListButton.swift */,
 				F45BB74D2B761B6900A6AF05 /* EditView.swift */,
 				F4602A9F2B7E0AF3007DC29E /* EditWordButton.swift */,
+				F4CD9D772C3251BE0055ED89 /* WordEditView.swift */,
+				F4CD9D792C3251CA0055ED89 /* WordEditButton.swift */,
 				F4F6FAA62B74E0EC009317B6 /* WordData.swift */,
 				F4437E182BAC62AE00A01BDE /* Modifier.swift */,
 				F48E6B132BF6E5F90060E7B8 /* Function.swift */,
@@ -200,6 +206,7 @@
 				F4D1D2A32BFB06390093F911 /* AddListView.swift in Sources */,
 				F4F6FA972B73B4EF009317B6 /* ContentView.swift in Sources */,
 				F48E6B182BF6EBD00060E7B8 /* ListBlockView.swift in Sources */,
+				F4CD9D7A2C3251CA0055ED89 /* WordEditButton.swift in Sources */,
 				F4D1D29F2BFAEEBE0093F911 /* ModeSettingView.swift in Sources */,
 				F4602AA02B7E0AF3007DC29E /* EditWordButton.swift in Sources */,
 				F45BB74E2B761B6900A6AF05 /* EditView.swift in Sources */,
@@ -208,6 +215,7 @@
 				F4437E192BAC62AE00A01BDE /* Modifier.swift in Sources */,
 				F4F6FA952B73B4EF009317B6 /* PowerWordTwo.swift in Sources */,
 				F4F46CB02B75C0D400BD9989 /* AddButton.swift in Sources */,
+				F4CD9D782C3251BE0055ED89 /* WordEditView.swift in Sources */,
 				F4D1D2A12BFB05650093F911 /* AddListButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,6 +13,8 @@ struct EditWordButton: View {
     @State private var showingSheet: Bool = false
     @State var toList: DotList = DotList()
     
+    @State var inputText: String = ""
+    
     var selectedList: DotList
     var listIndex: Int
     
@@ -23,6 +25,8 @@ struct EditWordButton: View {
         self.selectedList = selectedList
         self.listIndex = listIndex
         self._toList = State(initialValue: selectedList)
+        print("self.selectedWord.text:" , self.selectedWord.text)
+//        self._inputText = State(initialValue: self.selectedWord.text)
     }
     
     var body: some View {
@@ -48,17 +52,20 @@ struct EditWordButton: View {
                         .toolbar {
                             ToolbarItem {
                                 Button {
-                                    showingSheet = false
                                     if let listIndex =  data.lists.firstIndex(where: {$0.id == data.getDotListContainingWord(selectedWord)?.id}) {
                                         if let index = data.lists[listIndex].dotlists.firstIndex(where: { $0.id == selectedWord.id }) {
                                             // data.wordsの要素を直接変更
                                             data.lists[listIndex].dotlists[index].text = selectedWord.text
+//                                            data.lists[listIndex].dotlists[index].text = inputText
                                             data.save()
+                                            print(selectedWord.text)
+                                            print("word changed!")
+                                            print(data.lists[listIndex].dotlists[index].text)
                                         } else {
                                             print("Item not found")
                                         }
                                     }
-                                    
+                                    showingSheet = false
                                 } label: {
                                     Image(systemName: "checkmark")
                                         .foregroundColor(.blue)

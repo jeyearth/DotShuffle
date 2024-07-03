@@ -107,8 +107,8 @@ func doShuffle(data: WordData, selectedWord: inout Word, selectedNum: inout Int,
 }
 
 func doShuffleTwo(data: WordData, shuffleData: inout ShuffleData) {
-    print("doShuffleTwo!!")
-    print("trueIndices:" , shuffleData.trueIndices)
+//    print("doShuffleTwo!!")
+//    print("trueIndices:" , shuffleData.trueIndices)
     if shuffleData.trueIndices.count > 0 {
         if shuffleData.shuffleItemsCount == 0 {
             shuffleData.isShowAlert.toggle()

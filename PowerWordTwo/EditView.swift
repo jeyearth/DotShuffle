@@ -25,7 +25,7 @@ struct EditView: View {
     
     var body: some View {
         VStack {
-            List {
+            Form {
                 Picker("List", selection: $toList) {
                     ForEach(data.lists, id: \.self) { list in
                         Text(list.name).tag(list)
@@ -37,13 +37,13 @@ struct EditView: View {
                         TextEditor(text: $editedText)
                             .frame(height: 200)
                             .disableAutocorrection(true)
-                        if word.text.isEmpty {
-                            Text("ここに文字を入力してください。")
-                                .foregroundColor(Color(uiColor: .placeholderText))
-                                .allowsHitTesting(false)
-                                .padding(7)
-                                .padding(.top, 2)
-                        }
+                        if editedText.isEmpty {
+                                Text("ここに文字を入力してください。")
+                                    .foregroundColor(Color(uiColor: .placeholderText))
+                                    .allowsHitTesting(false)
+                                    .padding(7)
+                                    .padding(.top, 2)
+                            }
                     }
                 } // ZStackここまで
             } // Listここまで

@@ -27,24 +27,14 @@ struct HomeView: View {
             VStack {
                 ModeSettingButton(shuffleData: $shuffleData)
                 Spacer()
-//                Text("\(selectedWord.text)")
-//                    .frame(width: 340.0)
-//                Spacer()
                 Text("\(shuffleData.selectedWord.text)")
                     .frame(width: 340.0)
                 Spacer()
-                
-//                ShuffleButton(
-//                    selectedWord: $selectedWord,
-//                    selectedNum: $selectedNum,
-//                    beforeNum: $beforeNum,
-//                    beforeListNum: $beforeListNum
-//                )
                 ShuffleButtonTwo(shuffleData: $shuffleData)
-                .padding(.bottom, 100)
+                    .padding(.bottom, 100)
             } // VStackここまで
             HStack {
-                EditWordButton(selectedWord: $selectedWord, selectedList: data.getDotListContainingWord(selectedWord) ?? DotList(), listIndex: data.lists.firstIndex{ $0.dotlists.contains(where: { $0.id == selectedWord.id }) } ?? 0)
+                WordEditButton(shuffleData: $shuffleData, selectedList: data.lists[shuffleData.selectedListIndex])
                 AddButton()
             }
             .padding()

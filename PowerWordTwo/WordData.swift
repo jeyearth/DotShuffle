@@ -50,9 +50,20 @@ final class WordData: ObservableObject {
     ]
     
     func add(_ word: Word) {
-//        words.append(word)
         lists[0].dotlists.append(word)
-        
+    }
+    
+    func updataWordText(_ word: Word, _ editedText: String) {
+        if let listIndex =  lists.firstIndex(where: {$0.id == getDotListContainingWord(word)?.id}) {
+            if let index = lists[listIndex].dotlists.firstIndex(where: { $0.id == word.id }) {
+                // data.wordsの要素を直接変更
+                lists[listIndex].dotlists[index].text = editedText
+                save()
+                print("word updated")
+            } else {
+                print("Item not found")
+            }
+        }
     }
     
     func remove(_ listIndex: Int, _ word: Word) {

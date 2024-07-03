@@ -17,7 +17,7 @@ struct ContentView: View {
     
     var body: some View {
         TabView(selection: $selection) {
-            HomeView( selectedWord: Word())
+            HomeView()
                 .tabItem {
                     Label("Home",
                           systemImage: "person")

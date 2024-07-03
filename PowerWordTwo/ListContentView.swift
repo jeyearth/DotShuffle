@@ -253,6 +253,7 @@ struct ListContentView: View {
     
     func changeListWords(_ selectedItems: Set<Int>, from oldList: DotList, to newList: DotList) {
         var selectedWords: [Word] = []
+        var selectedItems = selectedItems.sorted()
         
         for selectedItem in selectedItems {
             selectedWords.append(data.lists[listIndex].dotlists[selectedItem])
