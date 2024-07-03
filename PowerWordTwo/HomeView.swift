@@ -30,7 +30,7 @@ struct HomeView: View {
                 Text("\(shuffleData.selectedWord.text)")
                     .frame(width: 340.0)
                 Spacer()
-                ShuffleButtonTwo(shuffleData: $shuffleData)
+                ShuffleButton(shuffleData: $shuffleData)
                     .padding(.bottom, 100)
             } // VStackここまで
             HStack {

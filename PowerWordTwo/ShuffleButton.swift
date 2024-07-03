@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ShuffleButtonTwo: View {
+struct ShuffleButton: View {
     @EnvironmentObject var data: WordData
     @State private var isShowAlert: Bool = false
     
@@ -50,7 +50,7 @@ struct ShuffleButtonTwo: View {
 }
 
 #Preview {
-    ShuffleButtonTwo(
+    ShuffleButton(
         shuffleData: .constant(ShuffleData())
     )
     .environmentObject(WordData())
