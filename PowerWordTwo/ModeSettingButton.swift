@@ -41,7 +41,7 @@ struct ModeSettingButton: View {
                         .onDisappear {
                             data.save()
                             shuffleData = ShuffleData(data: data)
-                            doShuffleTwo(data: data, shuffleData: &shuffleData)
+                            doShuffle(data: data, shuffleData: &shuffleData)
                         }
                 } // NavigationStackここまで
                 .presentationDetents([.medium])

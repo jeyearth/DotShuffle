@@ -29,87 +29,6 @@ struct ListContentView: View {
     @State private var isShowAlert: Bool = false
     
     var body: some View {
-        //        VStack {
-        //            List (selection: $selection) {
-        //                ForEach(data.lists[listIndex].dotlists, id: \.self) { word in
-        //                    NavigationLink(
-        //                        destination: EditView(word: $data.lists[listIndex].dotlists[data.lists[listIndex].dotlists.firstIndex(of: word)!])
-        //                            .onDisappear {
-        //                                // データの変更をビューの更新とは別のタイミングで行う
-        //                                DispatchQueue.main.async {
-        //                                    selection = nil
-        //                                    data.save()
-        //                                }
-        //                            }
-        //                    ) {
-        //                        Text(word.text)
-        //                            .swipeActions {
-        //                                Button(role: .destructive) {
-        //                                    selection = nil
-        //                                    data.remove(listIndex, word)
-        //                                    data.save()
-        //                                } label: {
-        //                                    Label("Delete", systemImage: "trash")
-        //                                }
-        //                            }
-        //                    } // NavigationLinkここまで
-        //                } // ForEachここまで
-        //                .onMove(perform: rowReplace)
-        //            } // Listここまで
-        //            .navigationTitle(selectedList.name)
-        //        } // VStackここまで
-        
-        //        NavigationView {
-        //            List(selection: $selection) {
-        //                ForEach(data.lists[listIndex].dotlists, id: \.self) { word in
-        //                    NavigationLink(
-        //                        destination: EditView(word: $data.lists[listIndex].dotlists[data.lists[listIndex].dotlists.firstIndex(of: word)!])
-        //                            .onDisappear {
-        //                                selection = nil
-        //                                // データの変更をビューの更新とは別のタイミングで行う
-        //                                DispatchQueue.main.async {
-        //                                    selection = nil
-        //                                    data.save()
-        //                                }
-        //                            }
-        //                    ) {
-        //                        Text(word.text)
-        //                            .swipeActions {
-        //                                Button(role: .destructive) {
-        //                                    selection = nil
-        //                                    data.remove(listIndex, word)
-        //                                    data.save()
-        //                                } label: {
-        //                                    Label("Delete", systemImage: "trash")
-        //                                }
-        //                            }
-        //                            .contextMenu {
-        //                                Button {
-        //                                    print()
-        //                                } label: {
-        //                                    VStack {
-        //                                        Text("リストを移動")
-        //                                        Picker("色を選択", selection: $selectionColor) {
-        //                                            Text("赤").tag(Color.red)
-        //                                            Text("青").tag(Color.blue)
-        //                                            Text("緑").tag(Color.green)
-        //                                        }                                    }
-        //                                }
-        //                            } // contextMenu ここまで
-        //                            .onDisappear {
-        //                                selection = nil
-        //                            }
-        //                    } // NavigationLinkここまで
-        //                } // ForEachここまで
-        //            } // Listここまで
-        //            .navigationBarItems(
-        //                trailing: EditButton()
-        //            )
-        //            .environment(\.editMode, $editMode)
-        //            .navigationTitle(selectedList.name)
-        //            .navigationBarItems(trailing: AddListButton())
-        //        } // NavigationViewここまで
-        
         List(selection: $selectedItems) {
             ForEach(data.lists[listIndex].dotlists.indices, id: \.self) { index in
                 NavigationLink(destination:
@@ -172,23 +91,6 @@ struct ListContentView: View {
             trailing:
                 HStack {
                     if editMode == .active {
-                        //                        if selectedItems.count != 0 {
-                        //                            Button(role: .destructive) {
-                        //                                removeSelectedItems(selectedItems, listIndex)
-                        //                                selectedItems = []
-                        //                                editMode = .inactive
-                        //                                data.save()
-                        //                            } label: {
-                        //                                Label("Delete", systemImage: "trash")
-                        //                            }
-                        //                        } else {
-                        //                            Button {
-                        //                                isShowAlert = true
-                        //                            } label: {
-                        //                                Label("Delete", systemImage: "trash")
-                        //                            }
-                        //                        } // if ここまで
-                        
                         if selectedItems.count != 0 {
                             Button(role: .destructive) {
                                 removeSelectedItems(selectedItems, listIndex)
@@ -235,7 +137,6 @@ struct ListContentView: View {
                             }
                         } // if ここまで
                     } // if ここまで
-                    
                     EditButton()
                 }
         )
@@ -253,7 +154,7 @@ struct ListContentView: View {
     
     func changeListWords(_ selectedItems: Set<Int>, from oldList: DotList, to newList: DotList) {
         var selectedWords: [Word] = []
-        var selectedItems = selectedItems.sorted()
+        let selectedItems = selectedItems.sorted()
         
         for selectedItem in selectedItems {
             selectedWords.append(data.lists[listIndex].dotlists[selectedItem])

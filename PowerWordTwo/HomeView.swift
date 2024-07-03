@@ -41,7 +41,7 @@ struct HomeView: View {
         } // ZStackここまで
         .onAppear {
             shuffleData = ShuffleData(data: data)
-            doShuffleTwo(data: data, shuffleData: &shuffleData)
+            doShuffle(data: data, shuffleData: &shuffleData)
         }
     } // bodyここまで
     

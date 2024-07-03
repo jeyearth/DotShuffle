@@ -16,7 +16,7 @@ struct ShuffleButtonTwo: View {
     var body: some View {
         VStack {
             Button {
-                doShuffleTwo(data: data, shuffleData: &shuffleData)
+                doShuffle(data: data, shuffleData: &shuffleData)
             } label: {
                 Image(systemName: "shuffle")
                     .padding(.leading, 10)
