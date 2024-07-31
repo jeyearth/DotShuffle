@@ -11,9 +11,9 @@ struct HomeView: View {
     @EnvironmentObject var data: WordData
     @State var selectedWord: Word = Word()
     
-    @State private var selectedNum: Int = 0
-    @State private var beforeNum: Int = 0
-    @State private var beforeListNum: Int = 0
+//    @State private var selectedNum: Int = 0
+//    @State private var beforeNum: Int = 0
+//    @State private var beforeListNum: Int = 0
     
     @State private var showingSheet: Bool = false
     @State private var isShowAlert: Bool = false
