@@ -10,11 +10,10 @@ import SwiftUI
 
 struct EditView: View {
     @EnvironmentObject var data: WordData
-    @Binding var word: Word
-    @Binding var toList: DotList
-    
     @State private var selectedList: DotList?
     
+    @Binding var word: Word
+    @Binding var toList: DotList
     @State var editedText: String
     
     init(word: Binding<Word>, toList: Binding<DotList>) {

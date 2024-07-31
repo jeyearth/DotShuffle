@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ListView: View {
     @EnvironmentObject var data: WordData
-    @State private var selection: Word?
     
     var body: some View {
         VStack {

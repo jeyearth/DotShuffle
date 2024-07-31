@@ -10,8 +10,6 @@ import SwiftUI
 struct ListBlockView: View {
     @EnvironmentObject var data: WordData
     
-    @State private var showingAddListSheet = false
-    
     @State private var selectedWord: Word = Word()
     @State private var selectedList: DotList = DotList()
     

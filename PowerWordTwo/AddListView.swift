@@ -9,8 +9,6 @@ import SwiftUI
 
 struct AddListView: View {
     @Binding var newList: DotList
-    @Binding var showingAddListSheet: Bool
-    
     @State private var inputText: String = ""
     
     var body: some View {
@@ -20,7 +18,6 @@ struct AddListView: View {
                     TextEditor(text: $inputText)
                         .frame(height: 200)
                         .onChange(of: inputText) {
-                            // inputTextが変更されたときに、newWord.textも更新します
                             newList.name = inputText
                         }
                         .disableAutocorrection(true)
@@ -42,6 +39,6 @@ struct AddListView: View {
 
 #Preview {
     AddListView(
-        newList: .constant(DotList()), showingAddListSheet: .constant(true)
+        newList: .constant(DotList())
     )
 }

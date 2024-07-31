@@ -32,7 +32,6 @@ struct ShuffleData {
                 return nil
             }
         }
-        print("trueIndices:" ,trueIndices)
         shuffleItemsCount = trueIndices.reduce(0) { count, index in
             count + data.lists[index].dotlists.count
         }

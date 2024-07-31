@@ -25,7 +25,7 @@ struct AddButton: View {
             }
             .sheet(isPresented: $showingSheet) {
                 NavigationStack {
-                    AddView(newWord: $newWord, showingSheet: $showingSheet)
+                    AddView(newWord: $newWord)
                         .toolbar {
                             ToolbarItem(placement: .cancellationAction) {
                                 Button {
@@ -53,7 +53,7 @@ struct AddButton: View {
                             }
                         }
                 } // NavigationStackここまで
-            } // 
+            }
             .buttonStyle()
         } // HStackここまで
     } // bodyここまで

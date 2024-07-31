@@ -10,10 +10,8 @@ import SwiftUI
 struct EditWordButton: View {
     @EnvironmentObject var data: WordData
     @Binding var selectedWord: Word
-    @State private var showingSheet: Bool = false
     @State var toList: DotList = DotList()
-    
-    @State var inputText: String = ""
+    @State private var showingSheet: Bool = false
     
     var selectedList: DotList
     var listIndex: Int
@@ -22,11 +20,9 @@ struct EditWordButton: View {
         selectedWord: Binding<Word>, selectedList: DotList, listIndex: Int
     ) {
         self._selectedWord = selectedWord
+        self._toList = State(initialValue: selectedList)
         self.selectedList = selectedList
         self.listIndex = listIndex
-        self._toList = State(initialValue: selectedList)
-        print("self.selectedWord.text:" , self.selectedWord.text)
-//        self._inputText = State(initialValue: self.selectedWord.text)
     }
     
     var body: some View {
@@ -54,9 +50,7 @@ struct EditWordButton: View {
                                 Button {
                                     if let listIndex =  data.lists.firstIndex(where: {$0.id == data.getDotListContainingWord(selectedWord)?.id}) {
                                         if let index = data.lists[listIndex].dotlists.firstIndex(where: { $0.id == selectedWord.id }) {
-                                            // data.wordsの要素を直接変更
                                             data.lists[listIndex].dotlists[index].text = selectedWord.text
-//                                            data.lists[listIndex].dotlists[index].text = inputText
                                             data.save()
                                             print(selectedWord.text)
                                             print("word changed!")
@@ -71,9 +65,9 @@ struct EditWordButton: View {
                                         .foregroundColor(.blue)
                                         .font(.title2)
                                         .padding(.top, 6)
-                                }
-                            }
-                        }
+                                } // Buttonここまで
+                            } // ToolbarItemここまで
+                        } // toolbarここまで
                 } // NavigationStackここまで
             }
             .buttonStyle()

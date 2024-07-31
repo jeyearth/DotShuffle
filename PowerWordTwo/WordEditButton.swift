@@ -16,8 +16,8 @@ struct WordEditButton: View {
     var selectedList: DotList
     
     init(shuffleData: Binding<ShuffleData>, selectedList: DotList) {
-        self._shuffleData = shuffleData
         self.selectedList = selectedList
+        self._shuffleData = shuffleData
         self._toList = State(initialValue: selectedList)
     }
 

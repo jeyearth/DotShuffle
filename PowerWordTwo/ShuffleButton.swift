@@ -9,8 +9,6 @@ import SwiftUI
 
 struct ShuffleButton: View {
     @EnvironmentObject var data: WordData
-    @State private var isShowAlert: Bool = false
-    
     @Binding var shuffleData: ShuffleData
     
     var body: some View {

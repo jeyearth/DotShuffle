@@ -10,8 +10,6 @@ import SwiftUI
 struct AddView: View {
     @EnvironmentObject var data: WordData
     @Binding var newWord: Word
-    @Binding var showingSheet: Bool
-    
     @State private var inputText: String = ""
     
     var body: some View {
@@ -34,14 +32,13 @@ struct AddView: View {
                             .padding(7)
                             .padding(.top, 2)
                     }
-                }
-            }
-            //Spacer()
+                } // ZStackここまで
+            } // Listここまで
         } //VStackここまで
         .edgesIgnoringSafeArea(.bottom)
     } //bodyここまで
 }
 
 #Preview {
-    AddView(newWord: .constant(Word()), showingSheet: .constant(true))
+    AddView(newWord: .constant(Word()))
 }

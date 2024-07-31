@@ -21,7 +21,7 @@ struct AddListButton: View {
         }
         .sheet(isPresented: $showingAddListSheet) {
             NavigationStack {
-                AddListView(newList: $newList, showingAddListSheet: $showingAddListSheet)
+                AddListView(newList: $newList)
                     .toolbar {
                         ToolbarItem(placement: .cancellationAction) {
                             Button {

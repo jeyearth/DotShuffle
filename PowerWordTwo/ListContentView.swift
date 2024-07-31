@@ -21,10 +21,7 @@ struct ListContentView: View {
         self._pickerList = State(initialValue: selectedList)
     }
     
-    @State private var selectedWord: Word = Word()
-    
     @State private var selectedItems: Set<Int> = []
-    
     @State private var editMode: EditMode = .inactive
     @State private var isShowAlert: Bool = false
     
